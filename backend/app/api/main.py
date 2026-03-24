@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.endpoints import auth, crops, users, sensors
+from app.api.endpoints import auth, crops, users, sensors, ai_insights
 from app.core.config import settings
 from app.middleware.cors import setup_cors
 import os
@@ -20,6 +20,7 @@ app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
 app.include_router(users.router, prefix="/api/users", tags=["users"])
 app.include_router(crops.router, prefix="/api/crops", tags=["crops"])
 app.include_router(sensors.router, prefix="/api/sensors", tags=["sensors"])
+app.include_router(ai_insights.router, prefix="/api/ai", tags=["ai"])
 
 @app.get("/")
 def read_root():
