@@ -6,7 +6,8 @@ from app import schemas, models
 from app.database import get_db
 from app.api.endpoints.users import get_current_user_email
 from app.schemas_users import PasswordUpdate
-from app.core.security import verify_password, get_password_hash, create_access_token, ACCESS_TOKEN_EXPIRE_MINUTES
+from app.core.security import verify_password, get_password_hash, create_access_token
+from app.core.config import settings
 
 router = APIRouter()
 
@@ -35,7 +36,7 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
             detail="Incorrect email or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
         data={"sub": user.email}, expires_delta=access_token_expires
     )

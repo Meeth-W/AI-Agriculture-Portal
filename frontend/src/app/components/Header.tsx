@@ -74,6 +74,9 @@ export default function Header() {
               <Link href="/dashboard" className="text-sm font-bold text-olive-700 hover:text-olive-900 transition-colors">
                 Dashboard
               </Link>
+              <Link href="/insights" className="text-sm font-bold text-olive-700 hover:text-olive-900 transition-colors">
+                AI Insights
+              </Link>
               <Link href="/history" className="text-sm font-bold text-olive-700 hover:text-olive-900 transition-colors">
                 Plot History
               </Link>

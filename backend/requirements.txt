@@ -1,6 +1,7 @@
 fastapi
 uvicorn
 pydantic[email]
+pydantic-settings
 sqlalchemy
 pyjwt
 passlib[bcrypt]
@@ -8,3 +9,5 @@ python-multipart
 python-jose[cryptography]
 pymongo
 dnspython
+python-dotenv
+google-genai

@@ -5,7 +5,7 @@ from typing import Optional
 from datetime import datetime
 from app.mongo import user_profiles_collection, farms_collection
 from app.schemas_users import UserProfile, FarmInfo
-from app.core.security import ALGORITHM, SECRET_KEY
+from app.core.config import settings
 from fastapi.security import OAuth2PasswordBearer
 from jose import jwt, JWTError
 import uuid
@@ -18,7 +18,7 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 def get_current_user_email(token: str = Depends(oauth2_scheme)):
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
         email: str = payload.get("sub")
         if email is None:
             raise HTTPException(status_code=401, detail="Invalid auth credentials")
