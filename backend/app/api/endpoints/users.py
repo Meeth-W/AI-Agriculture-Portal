@@ -87,7 +87,7 @@ async def upload_avatar(
 
     # We determine network URL (Since its local for now, let's just point to localhost:8000)
     # Ideally should be a relative URL like /uploads/filename that the frontend accesses using API_URL 
-    avatar_url = f"http://localhost:8000/uploads/{filename}"
+    avatar_url = f"{settings.BACKEND_BASE_URL}/uploads/{filename}"
     user_profiles_collection.update_one(
         {"user_email": current_user_email},
         {"$set": {"avatar_url": avatar_url}}

@@ -2,9 +2,10 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker
+from app.core.config import settings
 
-# Ensure directory exists for the sqlite database
-DB_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "backend/database")
+# Use configured directory or fall back to computed default
+DB_DIR = settings.SQLITE_DB_DIR
 os.makedirs(DB_DIR, exist_ok=True)
 
 SQLALCHEMY_DATABASE_URL = f"sqlite:///{os.path.join(DB_DIR, 'auth.db')}"

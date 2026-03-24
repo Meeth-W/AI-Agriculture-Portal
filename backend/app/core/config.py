@@ -4,8 +4,18 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     PROJECT_NAME: str = "AI Agriculture Portal Backend"
 
+    # Server Configuration
+    BACKEND_HOST: str = "0.0.0.0"
+    BACKEND_PORT: int = 8000
+    DEBUG: bool = True
+    BACKEND_BASE_URL: str = "http://localhost:8000"
+    CORS_ORIGINS: list[str] = ["http://localhost:3000", "http://localhost:8000"]
+
+    # SQLite (Auth)
+    SQLITE_DB_DIR: str = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "data")
+
     # Security
-    SECRET_KEY: str = "super-secret-key-for-agri-portal"
+    SECRET_KEY: str = "super-secret-key"
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
 
